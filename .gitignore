@@ -1,0 +1,48 @@
+# Backup files
+*~
+*.asm~
+*.am~
+*.bak
+*.swp
+*.swo
+
+# Assembly build outputs
+*.o
+*.obj
+*.bin
+*.hex
+*.lst
+*.map
+*.sym
+*.exe
+*.elf
+*.out
+
+# Linker files
+*.lnk
+
+# Simulator/Emulator files
+*.log
+*.trace
+
+# OS-specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# IDE/Editor specific
+.vscode/
+.idea/
+*.sublime-*
+.project
+.settings/
+.classpath
+
+# Temporary files
+*.tmp
+*.temp
