@@ -39,3 +39,22 @@ NO_CARRY:
       HLT
 
 
+; Either we can do 2s complement like above or we can do like below
+LXI H , 2050H 
+MVI B, 00H 
+MOV A, M 
+CMA 
+ADI 01H 
+STA 2050H
+JNC HeHe
+INR B
+
+HeHe:
+LXI H, 2051H  ; OR WE CAN JUST DO INX H 
+MOV A, M 
+CMA 
+ADD B 
+STA 2051H 
+HLT
+
+
