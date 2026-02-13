@@ -1,0 +1,22 @@
+; Program to count Number of 0 and 1
+LDA, 8500H 
+MVI B, 08H 
+MVI C, 00H 
+
+HEHE: RRC
+          ANI 01H 
+          JNZ WOW 
+          INR C
+
+WOW:  DCR B 
+            JNZ HEHE 
+
+
+MOV A, C
+STA 8501H  ; STORE NUMBER OF 0 COUNTED
+
+MOV A, 08H 
+SUB C 
+STA 8502H  ; STORE NUMBER OF 1 , COUNTED BY COMPLEMENTING
+
+HLT
