@@ -21,6 +21,7 @@ LOOP: MOV A, M
   MOV A, E 
   CMP B 
   JNC SKIP  ; IF LOWER IS GREATER, I.E. UPPER IS SMALLER , SO WE DON'T COUNT IT 
+  @ JC SKIP  ; IF LOWER IS GREATER, I.E. UPPER IS SMALLER , SO WE DON'T COUNT IT , if we want to count in which the lower is greater and upper is smaller then we just do JC SKIP , and it will work, whole program same
   INR C ; ELSE WE COUNT IT , SO INCREASE COUNTER 
 
 SKIP : INX H
