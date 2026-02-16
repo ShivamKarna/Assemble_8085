@@ -30,3 +30,33 @@ CPI 74H
 JC L3 
 HLT
 
+
+; An easier method for above program might be this
+LXI H , 9000H
+LXI B, 9020H 
+LXI D, 9040H 
+LXI SP , 9060H 
+
+MVI C, 14H ; COUNTER
+
+LOOP: LDAX D 
+  ADD M 
+  STAX B 
+  JNC NO_CARRY 
+  MVI A, 01H 
+  JMP STORE 
+NO_CARRY: MVI A, 00H 
+
+STORE  : PUSH B 
+    MOV B, SPH 
+    MOV C, SPL 
+    STAX B 
+    POP B 
+
+INX H 
+INX B 
+INX D 
+
+DCR C 
+JNZ LOOP 
+HLT
