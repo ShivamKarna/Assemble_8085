@@ -7,29 +7,25 @@ MVI C, 00H ; COUNTER
 
 
 LOOP: MOV A, M 
-  ANI 0FH 
-  MOV E, A  ; LOWER NIBBLE STORE IN E 
+      ANI 0FH 
+      MOV E, A  ; LOWER NIBBLE STORE IN E 
 
-  MOV A, M 
-  MOV B,A 
-  ANI F0H 
-  RRC 
-   RRC 
-  RRC 
-  RRC 
-   MOV B,A 
-  MOV A, E 
-  CMP B 
-  JNC SKIP  ; IF LOWER IS GREATER, I.E. UPPER IS SMALLER , SO WE DON'T COUNT IT 
-  @ JC SKIP  ; IF LOWER IS GREATER, I.E. UPPER IS SMALLER , SO WE DON'T COUNT IT , if we want to count in which the lower is greater and upper is smaller then we just do JC SKIP , and it will work, whole program same
-  INR C ; ELSE WE COUNT IT , SO INCREASE COUNTER 
+      MOV A, M 
+      ANI F0H 
+      RRC 
+      RRC 
+      RRC 
+      RRC        ; UPPER NIBBLE NOW IN A
+
+      CMP E 
+      JC SKIP     ; IF LOWER IS GREATER, I.E. UPPER IS SMALLER , SO WE DON'T COUNT IT 
+      JZ SKIP     ; IF BOTH ARE EQUAL , DON'T COUNT
+      INR C ; ELSE WE COUNT IT , SO INCREASE COUNTER 
 
 SKIP : INX H
-    DCR D 
-    JNZ LOOP 
+       DCR D 
+       JNZ LOOP 
 
 MOV A, C 
 STA C082H
 HLT
-
-
