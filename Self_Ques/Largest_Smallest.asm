@@ -15,8 +15,7 @@ LOOP : MOV A,M
             JC CHECK_MIN 
             MOV B,A 
 
-CHECK_MIN: MOV A, M 
-                      CMP C 
+CHECK_MIN: CMP C 
                       JC UPDATE_MIN
                       JMP NEXT
 
