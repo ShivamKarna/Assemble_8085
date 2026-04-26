@@ -94,18 +94,11 @@ main endp
 ; --- Procedure to print AX in Blue on Green ---
 print_colored_num proc
     add al, '0'      ; Convert single digit count to ASCII
-    mov bl, 21h      ; Attribute: 2 (Green Back), 1 (Blue Text)
     mov ah, 09h      ; BIOS: Write character and attribute
     mov bh, 0        ; Page 0
+    mov bl, 21h      ; Attribute: 2 (Green Back), 1 (Blue Text)
     mov cx, 1        ; Repeat 1 time
     int 10h          ; Call BIOS video interrupt
-    
-    ; Advance cursor manually so next print doesn't overwrite
-    mov ah, 03h      ; Get cursor position
-    int 10h
-    inc dl           ; Move column right
-    mov ah, 02h      ; Set cursor position
-    int 10h
     ret
 print_colored_num endp
 
